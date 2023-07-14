@@ -1,0 +1,55 @@
+C51 COMPILER V9.60.0.0   DS18B20                                                           05/31/2023 11:20:10 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DS18B20
+OBJECT MODULE PLACED IN .\Objects\DS18B20.obj
+COMPILER INVOKED BY: D:\Keil 5\MDK-ARM\C51\BIN\C51.EXE DS18B20.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Lis
+                    -tings\DS18B20.lst) OBJECT(.\Objects\DS18B20.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "wire_dq.h"
+   3          
+   4          #define DS18B20_SKIP_ROM                                                        0xCC
+   5          #define DS18B20_CONVERT_T                                                       0x44
+   6          #define DS18B20_READ_SCRATCHPAD                                         0xBE
+   7          void DS18B20_ConvertT(void)
+   8          {
+   9   1              WireDQ_Init();
+  10   1              WireDQ_SendByte(DS18B20_SKIP_ROM);
+  11   1              WireDQ_SendByte(DS18B20_CONVERT_T); 
+  12   1      }
+  13          
+  14          float DS18B20_ReadT(void)
+  15          {
+  16   1              unsigned char TLSB,TMSB;
+  17   1              float temp;
+  18   1              int T;
+  19   1              WireDQ_Init();
+  20   1              WireDQ_SendByte(DS18B20_SKIP_ROM);
+  21   1              WireDQ_SendByte(DS18B20_READ_SCRATCHPAD);
+  22   1              TLSB=WireDQ_ReceiveByte();
+  23   1              TMSB=WireDQ_ReceiveByte();
+  24   1              T=(TMSB<<8)|TLSB;
+  25   1              temp=T/16.0;
+  26   1              return temp;
+  27   1      } 
+  28          
+  29          
+  30          
+  31                  
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     56    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

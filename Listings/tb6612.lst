@@ -1,0 +1,89 @@
+C51 COMPILER V9.60.0.0   TB6612                                                            05/31/2023 11:20:10 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE TB6612
+OBJECT MODULE PLACED IN .\Objects\tb6612.obj
+COMPILER INVOKED BY: D:\Keil 5\MDK-ARM\C51\BIN\C51.EXE tb6612.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\tb6612.lst) OBJECT(.\Objects\tb6612.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include <timer.h>
+   3          
+   4          
+   5          sbit STBY=P1^0;
+   6          sbit PWMA=P1^1;
+   7          sbit PWMB=P1^2;
+   8          sbit AIN1=P1^3;
+   9          sbit AIN2=P1^4;
+  10          sbit BIN1=P1^5;
+  11          sbit BIN2=P1^6;
+  12          
+  13          void TB6612_Init()            //驱动芯片待机，开始输出PWM信号
+  14          {
+  15   1              STBY=1;
+  16   1              PWMA=1;
+  17   1              PWMB=1;
+  18   1              AIN1=0;
+  19   1              AIN2=0;
+  20   1              BIN1=0;
+  21   1              BIN2=0;
+  22   1              Timer0_Init;
+*** WARNING C275 IN LINE 22 OF tb6612.c: expression with possibly no effect
+  23   1              Timer1_Init();                          
+  24   1      }
+  25          
+  26          void Gate1_Start()
+  27          {
+  28   1              STBY=1;
+  29   1              AIN1=0;
+  30   1              AIN2=1;
+  31   1      }
+  32          
+  33          void Gate2_Start()
+  34          {
+  35   1              STBY=1;
+  36   1              BIN1=0;
+  37   1              BIN2=1;
+  38   1      }
+  39          
+  40          void Gate1_Stop()
+  41          {
+  42   1              STBY=1;
+  43   1              AIN1=0;
+  44   1              AIN2=0;
+  45   1      }
+  46          
+  47          
+  48          void Gate2_Stop()
+  49          {
+  50   1              STBY=1;
+  51   1              BIN1=0;
+  52   1              BIN2=0;
+  53   1      }
+C51 COMPILER V9.60.0.0   TB6612                                                            05/31/2023 11:20:10 PAGE 2   
+
+  54          
+  55                  
+  56                  
+  57                  
+  58                  
+  59                  
+  60                  
+  61                  
+  62                  
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     45    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

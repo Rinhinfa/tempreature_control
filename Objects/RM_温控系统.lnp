@@ -1,0 +1,10 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj",
+".\Objects\Wire_DQ.obj",
+".\Objects\Delay.obj",
+".\Objects\LCD1602.obj",
+".\Objects\DS18B20.obj",
+".\Objects\tb6612.obj",
+".\Objects\timer.obj" 
+TO ".\Objects\RM_温控系统" 
+PRINT(".\Listings\RM_温控系统.m51") RAMSIZE(256) 
